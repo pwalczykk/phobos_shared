@@ -48,6 +48,9 @@ add_message_files(
   JointsState16.msg
   ArmVel16.msg
   WheelsVel16.msg
+  EncodersArm.msg
+  EncodersRockerBogie.msg
+  EncodersWheels.msg
 )
 
 ## Generate services in the 'srv' folder
