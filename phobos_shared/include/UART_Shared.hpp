@@ -1,6 +1,14 @@
 #ifndef SHARED_UART_433_HPP_
 #define SHARED_UART_433_HPP_
 
+#include <termios.h>
+#define SHARED_C_CC_VMIN 1
+#define SHARED_C_CFLAG B9600 | CS8 | CLOCAL | CREAD
+#define SHARED_C_IFLAG IGNPAR
+#define SHARED_C_OFLAG 0
+#define SHARED_C_LFLAG 0
+
+
 #define TELEOPERATION_DATA_NUM 9
 union FrameTeleoperation{
     struct{
@@ -17,13 +25,13 @@ union FrameTeleoperation{
         int16_t control_mode;
         int32_t control_sum;
     };
+
     struct{
         int16_t begin[TELEOPERATION_DATA_NUM];
         // int32_t control_sum;
     };
-
-
 };
+
 
 #define TELEMETRY_DATA_NUM 24
 union FrameTelemetry{
@@ -63,7 +71,6 @@ union FrameTelemetry{
         int16_t begin[TELEMETRY_DATA_NUM];
         // int32_t control_sum;
     };
-
 };
 
 #endif
