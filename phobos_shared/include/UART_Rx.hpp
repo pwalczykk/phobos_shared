@@ -28,7 +28,7 @@ public:
         this->data_num = data_num;
         // Open UART device
         uart0_filestream = -1;
-        uart0_filestream = open(device_addres, O_RDONLY | O_NOCTTY | O_NDELAY);
+        uart0_filestream = open(device_addres, O_RDONLY | O_NOCTTY);
         if(uart0_filestream == -1){
             printf("ERROR - Unable to acces UART\n");
         }
