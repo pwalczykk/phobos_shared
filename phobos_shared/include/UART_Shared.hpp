@@ -30,6 +30,10 @@ union FrameTeleoperation{
         int16_t begin[TELEOPERATION_DATA_NUM];
         // int32_t control_sum;
     };
+
+    struct{
+        char buffor[TELEMETRY_DATA_NUM*2 + 4];
+    };
 };
 
 
@@ -70,6 +74,10 @@ union FrameTelemetry{
     struct{
         int16_t begin[TELEMETRY_DATA_NUM];
         // int32_t control_sum;
+    };
+
+    struct{
+        char buffor[TELEMETRY_DATA_NUM*2 + 4];
     };
 };
 
