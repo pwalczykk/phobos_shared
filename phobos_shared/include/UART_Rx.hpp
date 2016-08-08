@@ -22,6 +22,7 @@ protected:
     int data_num;
 public:
     FrameType WORD;
+    std::string BUFFOR;
 
 public:
     UART_Rx(const char* device_addres, const int data_num){
@@ -63,6 +64,28 @@ public:
         }
     }
 
+    bool ReadBufferAsString(){
+        BUFFOR.clear();
+        rx_length = read(uart0_filestream, (void*)BUFFOR.data(), data_num * 5 + 16);
+
+        std::stringstream stream(BUFFOR);
+        for(int i = 0; i < data_num; i++){
+            stream >> *(WORD.begin + i);
+        }
+        stream >> WORD.control_sum;
+
+
+        if(rx_length == 0){
+            return false;
+        }
+        else if(rx_length > 0){
+            return true;
+        }
+        else{
+            printf("UART RX ERROR!\n");
+            return false;
+        }
+    }
 
     bool CheckControlSum(){
         int32_t control_sum = 0;

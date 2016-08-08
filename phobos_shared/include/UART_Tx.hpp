@@ -21,6 +21,7 @@ protected:
     int data_num;
 public:
     FrameType WORD;
+    std::string BUFFOR;
 
 public:
     UART_Tx(const char* device_addres, const int data_num){
@@ -56,6 +57,24 @@ public:
         // Transmiting bytes
         if (uart0_filestream != -1){
             int count = write(uart0_filestream, (const void*)WORD.buffor, sizeof(WORD));
+            if(count < 0){
+                printf("'UART TX error code: %d'\n", count);
+            }
+        }
+    }
+
+    void TransmitAsString(){
+        if (uart0_filestream != -1){
+
+            BUFFOR.clear();
+            for(int i = 0; i < data_num; i++){
+                BUFFOR += std::to_string(*(WORD.begin + i));
+                BUFFOR += " ";
+            }
+            BUFFOR += WORD.control_sum;
+            BUFFOR += "\n";
+
+            int count = write(uart0_filestream, (const void*)BUFFOR.data(), (int)BUFFOR.size());
             if(count < 0){
                 printf("'UART TX error code: %d'\n", count);
             }
