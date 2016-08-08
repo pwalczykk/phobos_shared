@@ -11,6 +11,10 @@
 
 #define TELEOPERATION_DATA_NUM 9
 union FrameTeleoperation{
+    struct {
+        char buffor[TELEOPERATION_DATA_NUM*2 + 4 + 2];
+    };
+
     struct{
         int16_t wheels_left;
         int16_t wheels_right;
@@ -30,15 +34,14 @@ union FrameTeleoperation{
         int16_t begin[TELEOPERATION_DATA_NUM];
         // int32_t control_sum;
     };
-
-    struct{
-        char buffor[TELEMETRY_DATA_NUM*2 + 4];
-    };
 };
 
 
 #define TELEMETRY_DATA_NUM 24
 union FrameTelemetry{
+    struct{
+        char buffor[TELEMETRY_DATA_NUM*2 + 4 + 2];
+    };
     struct{
         int16_t position_x;
         int16_t position_y;
@@ -74,10 +77,6 @@ union FrameTelemetry{
     struct{
         int16_t begin[TELEMETRY_DATA_NUM];
         // int32_t control_sum;
-    };
-
-    struct{
-        char buffor[TELEMETRY_DATA_NUM*2 + 4];
     };
 };
 

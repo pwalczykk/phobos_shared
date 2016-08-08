@@ -49,7 +49,7 @@ public:
     }
 
     bool ReadBuffer(){
-        rx_length = read(uart0_filestream, (void*)&WORD, sizeof(WORD));
+        rx_length = read(uart0_filestream, (void*)WORD.buffor, sizeof(WORD));
 
         if(rx_length == 0){
             return false;

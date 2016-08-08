@@ -41,6 +41,11 @@ public:
         options.c_lflag = SHARED_C_LFLAG;
         tcflush(uart0_filestream, TCIFLUSH);
         tcsetattr(uart0_filestream, TCSANOW, &options);
+
+        const char* end_char = "\n";
+        WORD.buffor[sizeof(WORD)-2] = end_char[0];
+        WORD.buffor[sizeof(WORD)-1] = end_char[1];
+
     }
 
     ~UART_Tx(){
@@ -50,7 +55,7 @@ public:
     void Transmit(){
         // Transmiting bytes
         if (uart0_filestream != -1){
-            int count = write(uart0_filestream, (const void*)&WORD, sizeof(WORD));
+            int count = write(uart0_filestream, (const void*)WORD.buffor, sizeof(WORD));
             if(count < 0){
                 printf("'UART TX error code: %d'\n", count);
             }
