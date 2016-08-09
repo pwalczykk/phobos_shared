@@ -71,10 +71,13 @@ public:
         printf("Rx BUFFOR: %s \n", BUFFOR.c_str());
 
         std::stringstream stream(BUFFOR);
+        std::string temp_buff;
         for(int i = 0; i < data_num; i++){
-            stream >> *(WORD.begin + i);
+            stream >> temp_buff;
+            *(WORD.begin + i) = std::stoi(temp_buff);
         }
-        stream >> WORD.control_sum;
+        stream >> temp_buff;
+        WORD.control_sum = std::stoi(temp_buff);
 
 
         if(rx_length == 0){
