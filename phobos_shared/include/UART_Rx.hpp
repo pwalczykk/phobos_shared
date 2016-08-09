@@ -68,6 +68,8 @@ public:
         BUFFOR.clear();
         rx_length = read(uart0_filestream, (void*)BUFFOR.data(), data_num * 5 + 16);
 
+        printf("Rx BUFFOR: %s \n", BUFFOR.c_str());
+
         std::stringstream stream(BUFFOR);
         for(int i = 0; i < data_num; i++){
             stream >> *(WORD.begin + i);

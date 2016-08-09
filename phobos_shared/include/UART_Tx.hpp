@@ -74,6 +74,8 @@ public:
             BUFFOR += WORD.control_sum;
             BUFFOR += "\n";
 
+            printf("Tx BUFFOR: %s \n", BUFFOR.c_str());
+
             int count = write(uart0_filestream, (const void*)BUFFOR.data(), (int)BUFFOR.size());
             if(count < 0){
                 printf("'UART TX error code: %d'\n", count);
