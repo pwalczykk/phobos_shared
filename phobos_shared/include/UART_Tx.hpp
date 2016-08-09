@@ -19,13 +19,16 @@ private:
     struct termios options;
 protected:
     int data_num;
+    int buff_size;
 public:
     FrameType WORD;
     std::string BUFFOR;
+    char* CBUFFOR;
 
 public:
-    UART_Tx(const char* device_addres, const int data_num){
+    UART_Tx(const char* device_addres, const int data_num, const int buff_size){
         this->data_num = data_num;
+        this->buff_size = buff_size;
         // Open UART device
         uart0_filestream = -1;
         uart0_filestream = open(device_addres, O_RDWR | O_NOCTTY);
@@ -43,10 +46,11 @@ public:
         tcflush(uart0_filestream, TCIFLUSH);
         tcsetattr(uart0_filestream, TCSANOW, &options);
 
-        const char* end_char = "\n";
-        WORD.buffor[sizeof(WORD)-2] = end_char[0];
-        WORD.buffor[sizeof(WORD)-1] = end_char[1];
+        // const char* end_char = "\n";
+        // WORD.buffor[sizeof(WORD)-2] = end_char[0];
+        // WORD.buffor[sizeof(WORD)-1] = end_char[1];
 
+        CBUFFOR = (char*)malloc(buff_size);
     }
 
     ~UART_Tx(){
@@ -77,6 +81,31 @@ public:
             printf("Tx BUFFOR: %s \n", BUFFOR.c_str());
 
             int count = write(uart0_filestream, (const void*)BUFFOR.data(), (int)BUFFOR.size());
+            if(count < 0){
+                printf("'UART TX error code: %d'\n", count);
+            }
+        }
+    }
+
+    void TransmitAsChar(){
+        if (uart0_filestream != -1){
+
+            for(int i = 0; i < data_num; i++){
+                if(*(WORD.begin + i) < 10000 && *(WORD.begin + i) >= 0)
+                    sprintf((CBUFFOR + i*4),"%04i", *(WORD.begin + i));
+            }
+
+            if(WORD.control_sum < 1000000 && WORD.control_sum >= 0)
+                sprintf((CBUFFOR + data_num*4), "%06i", WORD.control_sum);
+
+            const char* end_char = "\0";
+                *(CBUFFOR + buff_size - 2) = end_char[0];
+                *(CBUFFOR + buff_size - 1) = end_char[1];
+
+
+            printf("Tx BUFFOR: %s \n", CBUFFOR);
+
+            int count = write(uart0_filestream, (const void*)CBUFFOR, buff_size);
             if(count < 0){
                 printf("'UART TX error code: %d'\n", count);
             }

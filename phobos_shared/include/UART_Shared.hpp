@@ -10,11 +10,13 @@
 
 
 #define TELEOPERATION_DATA_NUM 9
+#define TELEOPERATION_DATA_LENGTH 4         // Length in chars number, eg. length of 9999 is 4
+#define TELEOPERATION_CTRL_SUM_LENGTH 6
+#define TELEOPERATION_BUFFOR_SIZE (TELEOPERATION_DATA_NUM*TELEOPERATION_DATA_LENGTH + TELEOPERATION_CTRL_SUM_LENGTH + 2)
 union FrameTeleoperation{
-    struct {
-        char buffor[TELEOPERATION_DATA_NUM*2 + 4 + 2];
-    };
-
+    // struct {
+    //     char buffor[TELEOPERATION_BUFFOR_SIZE];
+    // };
     struct{
         int16_t wheels_left;
         int16_t wheels_right;
@@ -38,10 +40,13 @@ union FrameTeleoperation{
 
 
 #define TELEMETRY_DATA_NUM 24
+#define TELEMETRY_DATA_LENGTH 4
+#define TELEMETRY_CTRL_SUM_LENGTH 6
+#define TELEMETRY_BUFFOR_SIZE (TELEMETRY_DATA_NUM*TELEMETRY_DATA_LENGTH + TELEMETRY_CTRL_SUM_LENGTH + 2)
 union FrameTelemetry{
-    struct{
-        char buffor[TELEMETRY_DATA_NUM*2 + 4 + 2];
-    };
+    // struct{
+    //     char buffor[TELEMETRY_BUFFOR_SIZE];
+    // };
     struct{
         int16_t position_x;
         int16_t position_y;
