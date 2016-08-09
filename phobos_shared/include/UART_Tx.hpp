@@ -11,6 +11,7 @@
 #include <string>
 
 #include "UART_Shared.hpp"
+#include "Sys64Coder.hpp"
 
 template <typename FrameType>
 class UART_Tx{
@@ -51,6 +52,7 @@ public:
         // WORD.buffor[sizeof(WORD)-1] = end_char[1];
 
         CBUFFOR = (char*)malloc(buff_size);
+
     }
 
     ~UART_Tx(){
@@ -97,6 +99,35 @@ public:
 
             if(WORD.control_sum < 1000000 && WORD.control_sum >= 0)
                 sprintf((CBUFFOR + data_num*4), "%06i", WORD.control_sum);
+
+            const char* end_char = "\0";
+                *(CBUFFOR + buff_size - 2) = end_char[0];
+                *(CBUFFOR + buff_size - 1) = end_char[1];
+
+
+            printf("Tx BUFFOR: %s \n", CBUFFOR);
+
+            int count = write(uart0_filestream, (const void*)CBUFFOR, buff_size);
+            if(count < 0){
+                printf("'UART TX error code: %d'\n", count);
+            }
+        }
+    }
+
+    void TransmitAsChar64(){
+        if (uart0_filestream != -1){
+
+            for(int i = 0; i < data_num; i++){
+                if(*(WORD.begin + i) < 4096 && *(WORD.begin + i) >= 0){
+                    Sys64Coder2 coder(*(WORD.begin + i));
+                    memcpy(CBUFFOR + 2*i, coder.sys64, 2);
+                }
+            }
+
+            if(WORD.control_sum < 262144 && WORD.control_sum >= 0){
+                Sys64Coder3 coder(WORD.control_sum);
+                memcpy(CBUFFOR + 2*data_num, coder.sys64, 3);
+            }
 
             const char* end_char = "\0";
                 *(CBUFFOR + buff_size - 2) = end_char[0];
