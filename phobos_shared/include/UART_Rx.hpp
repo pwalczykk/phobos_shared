@@ -70,19 +70,6 @@ public:
 
         printf("Rx BUFFOR: %s \n", BUFFOR.c_str());
 
-<<<<<<< HEAD
-        std::stringstream stream(BUFFOR);
-        std::string temp_buff;
-        for(int i = 0; i < data_num; i++){
-            stream >> temp_buff;
-            *(WORD.begin + i) = std::stoi(temp_buff);
-        }
-        stream >> temp_buff;
-        WORD.control_sum = std::stoi(temp_buff);
-
-
-=======
->>>>>>> 794aad7036d9a670ffd011c7473cc0251ddb128d
         if(rx_length == 0){
             return false;
         }

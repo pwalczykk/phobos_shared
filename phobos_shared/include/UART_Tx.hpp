@@ -71,7 +71,7 @@ public:
                 BUFFOR += std::to_string(*(WORD.begin + i));
                 BUFFOR += " ";
             }
-            BUFFOR += WORD.control_sum;
+            BUFFOR += std::to_string(WORD.control_sum);
             BUFFOR += "\n";
 
             printf("Tx BUFFOR: %s \n", BUFFOR.c_str());
