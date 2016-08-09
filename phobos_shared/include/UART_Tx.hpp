@@ -8,7 +8,7 @@
 #include <termios.h>
 
 #include <stdlib.h>
-#include <string.h>
+#include <string>
 
 #include "UART_Shared.hpp"
 
