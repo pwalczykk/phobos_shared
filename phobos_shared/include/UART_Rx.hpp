@@ -113,11 +113,11 @@ public:
         else if(rx_length > 0){
             for(int i = 0; i < data_num; i++){
                 char temp_buff[4];
-                memcpy((CBUFFOR + 4*i), temp_buff, 4);
+                memcpy(temp_buff,(CBUFFOR + 4*i), 4);
                 *(WORD.begin + i) = std::atoi(temp_buff);
             }
             char temp_buff[6];
-            memcpy(CBUFFOR + 4*data_num, temp_buff, 6);
+            memcpy(temp_buff, CBUFFOR + 4*data_num, 6);
             WORD.control_sum = std::atoi(temp_buff);
 
             return true;
