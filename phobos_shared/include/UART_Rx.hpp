@@ -75,14 +75,17 @@ public:
             return false;
         }
         else if(rx_length > 0){
+            // std::string temp_buff;
             std::stringstream stream(BUFFOR);
-            std::string temp_buff;
+
             for(int i = 0; i < data_num; i++){
-                stream >> temp_buff;
-                *(WORD.begin + i) = std::stoi(temp_buff);
+            //     stream >> temp_buff;
+            //     *(WORD.begin + i) = std::stoi(temp_buff);
+                stream >> *(WORD.begin + i);
             }
-            stream >> temp_buff;
-            WORD.control_sum = std::stoi(temp_buff);
+            // stream >> temp_buff;
+            // WORD.control_sum = std::stoi(temp_buff);
+            stream >> WORD.control_sum;
 
             return true;
         }
