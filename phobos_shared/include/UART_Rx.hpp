@@ -133,24 +133,16 @@ public:
     bool ReadBufferAsChar64(){
         rx_length = read(uart0_filestream, (void*)CBUFFOR, buff_size);
 
-        // if(rx_length == 0){
-        //     return false;
-        // }
-        // else if(rx_length > -2){
-            printf("Rx BUFFOR: %s \n", CBUFFOR);
-            for(int i = 0; i < data_num; i++){
-                Sys64Coder2 coder(CBUFFOR + 2*i);
-                *(WORD.begin + i) = coder.decimal;
-            }
-            Sys64Coder3 coder(CBUFFOR + 2*data_num);
-            WORD.control_sum = coder.decimal;
+        printf("Rx BUFFOR: %s \n", CBUFFOR);
 
-            return true;
-        // }
-        // else{
-        //     printf("UART RX ERROR! : %i\n", rx_length);
-        //     return false;
-        // }
+        for(int i = 0; i < data_num; i++){
+            Sys64Coder2 coder(CBUFFOR + 2*i);
+            *(WORD.begin + i) = coder.decimal;
+        }
+        Sys64Coder3 coder(CBUFFOR + 2*data_num);
+        WORD.control_sum = coder.decimal;
+
+        return true;
     }
 
 
