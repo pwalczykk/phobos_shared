@@ -141,10 +141,10 @@ public:
             printf("Rx BUFFOR: %s \n", CBUFFOR);
 
             for(int i = 0; i < data_num; i++){
-                Sys64Coder2 coder(CBUFFOR + 2*i);
+                Sys64Coder3 coder(CBUFFOR + 3*i);
                 *(WORD.begin + i) = coder.decimal;
             }
-            Sys64Coder3 coder(CBUFFOR + 2*data_num);
+            Sys64Coder4 coder(CBUFFOR + 3*data_num);
             WORD.control_sum = coder.decimal;
 
             return true;

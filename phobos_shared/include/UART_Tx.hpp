@@ -118,16 +118,16 @@ public:
         if (uart0_filestream != -1){
 
             for(int i = 0; i < data_num; i++){
-                if(*(WORD.begin + i) < 4096 && *(WORD.begin + i) >= 0){
-                    Sys64Coder2 coder(*(WORD.begin + i));
-                    memcpy(CBUFFOR + 2*i, coder.sys64, 2);
-                }
+                if(*(WORD.begin + i) > 262143)  *(WORD.begin + i) = 262143;
+                if(*(WORD.begin + i) < 0)       *(WORD.begin + i) = 0;
+                Sys64Coder3 coder(*(WORD.begin + i));
+                memcpy(CBUFFOR + 3*i, coder.sys64, 3);
             }
 
-            if(WORD.control_sum < 262144 && WORD.control_sum >= 0){
-                Sys64Coder3 coder(WORD.control_sum);
-                memcpy(CBUFFOR + 2*data_num, coder.sys64, 3);
-            }
+            if(WORD.control_sum > 16777215) WORD.control_sum = 16777215;
+            if(WORD.control_sum < 0)        WORD.control_sum = 0;
+            Sys64Coder4 coder(WORD.control_sum);
+            memcpy(CBUFFOR + 3*data_num, coder.sys64, 4);
 
             const char* end_char = "\0";
                 *(CBUFFOR + buff_size - 2) = end_char[0];

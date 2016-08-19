@@ -32,72 +32,69 @@ int Decode64(char value){
 }
 
 
-class Sys64Coder2{
+class USys64Coder2{
 public:
     int decimal;
     char sys64[2];
 public:
-    Sys64Coder2(int decimal){
+    USys64Coder2(int decimal){
         this->decimal = decimal;
 
-        int unsigned_decimal = decimal + 32;
-        this->sys64[0] = Encode64(unsigned_decimal / 64);
-        this->sys64[1] = Encode64(unsigned_decimal % 64);
+        this->sys64[0] = Encode64(decimal / 64);
+        this->sys64[1] = Encode64(decimal % 64);
     }
 
-    Sys64Coder2(char* sys64){
+    USys64Coder2(char* sys64){
         this->sys64[0] = *(sys64+0);
         this->sys64[1] = *(sys64+1);
 
-        this->decimal = 64*Decode64(sys64[0]) + Decode64(sys64[1]) - 32;
+        this->decimal = 64*Decode64(sys64[0]) + Decode64(sys64[1]);
     }
 };
 
-class Sys64Coder3{
+class USys64Coder3{
 public:
     int decimal;
     char sys64[3];
 public:
-    Sys64Coder3(int decimal){
+    USys64Coder3(int decimal){
         this->decimal = decimal;
 
-        int unsigned_decimal = decimal + 2048;
-        this->sys64[0] = Encode64(unsigned_decimal / 4096);
-        this->sys64[1] = Encode64((unsigned_decimal % 4096)/64);
-        this->sys64[2] = Encode64(unsigned_decimal % 64);
+        this->sys64[0] = Encode64(decimal / 4096);
+        this->sys64[1] = Encode64((decimal % 4096)/64);
+        this->sys64[2] = Encode64(decimal % 64);
     }
 
-    Sys64Coder3(char* sys64){
+    USys64Coder3(char* sys64){
         this->sys64[0] = *(sys64+0);
         this->sys64[1] = *(sys64+1);
         this->sys64[2] = *(sys64+2);
 
-        this->decimal = 4096*Decode64(sys64[0]) + 64*Decode64(sys64[1]) + Decode64(sys64[2]) - 2048;
+        this->decimal = 4096*Decode64(sys64[0]) + 64*Decode64(sys64[1]) + Decode64(sys64[2]);
     }
 };
 
-class Sys64Coder4{
+class USys64Coder4{
 public:
     int decimal;
     char sys64[4];
 public:
-    Sys64Coder4(int decimal){
+    USys64Coder4(int decimal){
         this->decimal = decimal;
 
-        int unsigned_decimal = decimal + 131072;
-        this->sys64[0] = Encode64(unsigned_decimal / 262144);
-        this->sys64[1] = Encode64((unsigned_decimal % 262144)/4096);
-        this->sys64[2] = Encode64((unsigned_decimal % 4096)/64);
-        this->sys64[3] = Encode64((unsigned_decimal % 64)/1);
+        this->sys64[0] = Encode64(decimal / 262144);
+        this->sys64[1] = Encode64((decimal % 262144)/4096);
+        this->sys64[2] = Encode64((decimal % 4096)/64);
+        this->sys64[3] = Encode64((decimal % 64)/1);
     }
 
-    Sys64Coder4(char* sys64){
+    USys64Coder4(char* sys64){
         this->sys64[0] = *(sys64+0);
         this->sys64[1] = *(sys64+1);
         this->sys64[2] = *(sys64+2);
         this->sys64[3] = *(sys64+3);
 
-        this->decimal = 262144*Decode64(sys64[0]) + 4096*Decode64(sys64[1]) + 64*Decode64(sys64[2]) + Decode64(sys64[3]) - 131072;
+        this->decimal = 262144*Decode64(sys64[0]) + 4096*Decode64(sys64[1]) + 64*Decode64(sys64[2]) + Decode64(sys64[3]);
     }
 };
 

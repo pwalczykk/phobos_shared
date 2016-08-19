@@ -8,6 +8,15 @@
     <!-- VISUALIZATION -->
     <node name="pub_traveled_path" pkg="phobos_control_station" type="pub_traveled_path" ns="/control"/>
 
+    <node name="robot_pose_publisher" pkg="phobos_control_station" type="robot_pose_publisher" ns="/control">
+        <param name="parent_link" value="/odom"/>
+        <param name="child_link" value="/base_link"/>
+    </node>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" ns="/control">
+        <remap from="/control/joint_states" to="/control/encoders/joint_state"/>
+    </node>
+
     <node name="rviz" type="rviz" pkg="rviz" ns="/control"/>
 
 </launch>
