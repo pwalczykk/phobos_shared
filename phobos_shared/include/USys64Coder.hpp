@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-char Encode64(int value){
+char UUEncode64(int value){
     if(37 < value && value < 64){
         return (char)value + 27;
     }
@@ -17,7 +17,7 @@ char Encode64(int value){
     }
 }
 
-int Decode64(char value){
+int UUDecode64(char value){
     if(64 < value && value < 91){ // A(38) - Z(63)
         return (int)value - 27;
     }
@@ -40,15 +40,15 @@ public:
     USys64Coder2(int decimal){
         this->decimal = decimal;
 
-        this->sys64[0] = Encode64(decimal / 64);
-        this->sys64[1] = Encode64(decimal % 64);
+        this->sys64[0] = UEncode64(decimal / 64);
+        this->sys64[1] = UEncode64(decimal % 64);
     }
 
     USys64Coder2(char* sys64){
         this->sys64[0] = *(sys64+0);
         this->sys64[1] = *(sys64+1);
 
-        this->decimal = 64*Decode64(sys64[0]) + Decode64(sys64[1]);
+        this->decimal = 64*UDecode64(sys64[0]) + UDecode64(sys64[1]);
     }
 };
 
@@ -60,9 +60,9 @@ public:
     USys64Coder3(int decimal){
         this->decimal = decimal;
 
-        this->sys64[0] = Encode64(decimal / 4096);
-        this->sys64[1] = Encode64((decimal % 4096)/64);
-        this->sys64[2] = Encode64(decimal % 64);
+        this->sys64[0] = UEncode64(decimal / 4096);
+        this->sys64[1] = UEncode64((decimal % 4096)/64);
+        this->sys64[2] = UEncode64(decimal % 64);
     }
 
     USys64Coder3(char* sys64){
@@ -70,7 +70,7 @@ public:
         this->sys64[1] = *(sys64+1);
         this->sys64[2] = *(sys64+2);
 
-        this->decimal = 4096*Decode64(sys64[0]) + 64*Decode64(sys64[1]) + Decode64(sys64[2]);
+        this->decimal = 4096*UDecode64(sys64[0]) + 64*UDecode64(sys64[1]) + UDecode64(sys64[2]);
     }
 };
 
@@ -82,10 +82,10 @@ public:
     USys64Coder4(int decimal){
         this->decimal = decimal;
 
-        this->sys64[0] = Encode64(decimal / 262144);
-        this->sys64[1] = Encode64((decimal % 262144)/4096);
-        this->sys64[2] = Encode64((decimal % 4096)/64);
-        this->sys64[3] = Encode64((decimal % 64)/1);
+        this->sys64[0] = UEncode64(decimal / 262144);
+        this->sys64[1] = UEncode64((decimal % 262144)/4096);
+        this->sys64[2] = UEncode64((decimal % 4096)/64);
+        this->sys64[3] = UEncode64((decimal % 64)/1);
     }
 
     USys64Coder4(char* sys64){
@@ -94,7 +94,7 @@ public:
         this->sys64[2] = *(sys64+2);
         this->sys64[3] = *(sys64+3);
 
-        this->decimal = 262144*Decode64(sys64[0]) + 4096*Decode64(sys64[1]) + 64*Decode64(sys64[2]) + Decode64(sys64[3]);
+        this->decimal = 262144*UDecode64(sys64[0]) + 4096*UDecode64(sys64[1]) + 64*UDecode64(sys64[2]) + UDecode64(sys64[3]);
     }
 };
 
