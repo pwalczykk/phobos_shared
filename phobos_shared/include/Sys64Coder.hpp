@@ -31,7 +31,6 @@ int Decode64(char value){
     }
 }
 
-
 class Sys64Coder2{
 public:
     int decimal;
