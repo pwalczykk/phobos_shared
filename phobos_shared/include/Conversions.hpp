@@ -13,14 +13,14 @@ int32_t Odom_Float2Int(float input){
     if(input > ODOM_MAX) input = ODOM_MAX;
     if(input < ODOM_MIN) input = ODOM_MIN;
 
-    return (int32_t) input * ODOM_RESOLUTION;
+    return (int32_t) (input * ODOM_RESOLUTION);
 };
 
 float Odom_Int2Float(int input){
     if(input > ODOM_INTMAX) input = ODOM_INTMAX;
     if(input < ODOM_INTMIN) input = ODOM_INTMIN;
 
-    return (float) input / ODOM_RESOLUTION;
+    return (float) (input / ODOM_RESOLUTION);
 };
 
 #endif
