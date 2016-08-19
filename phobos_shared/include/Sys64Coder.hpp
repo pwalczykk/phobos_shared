@@ -40,7 +40,7 @@ public:
     Sys64Coder2(int decimal){
         this->decimal = decimal;
 
-        int unsigned_decimal = decimal + 32;
+        int unsigned_decimal = decimal + 2048;
         this->sys64[0] = Encode64(unsigned_decimal / 64);
         this->sys64[1] = Encode64(unsigned_decimal % 64);
     }
@@ -61,7 +61,7 @@ public:
     Sys64Coder3(int decimal){
         this->decimal = decimal;
 
-        int unsigned_decimal = decimal + 2048;
+        int unsigned_decimal = decimal + 131072;
         this->sys64[0] = Encode64(unsigned_decimal / 4096);
         this->sys64[1] = Encode64((unsigned_decimal % 4096)/64);
         this->sys64[2] = Encode64(unsigned_decimal % 64);
@@ -84,7 +84,7 @@ public:
     Sys64Coder4(int decimal){
         this->decimal = decimal;
 
-        int unsigned_decimal = decimal + 131072;
+        int unsigned_decimal = decimal + 8388608;
         this->sys64[0] = Encode64(unsigned_decimal / 262144);
         this->sys64[1] = Encode64((unsigned_decimal % 262144)/4096);
         this->sys64[2] = Encode64((unsigned_decimal % 4096)/64);
