@@ -1,26 +1,50 @@
 #ifndef MY_CONVERSIONS_HPP_
 #define MY_CONVERSIONS_HPP_
 
-#define ODOM_MAX 1000
-#define ODOM_MIN -1000
+///////////////////////////////// POSITION
 
-#define ODOM_RESOLUTION 0.01
-#define ODOM_INTMAX (ODOM_MAX / ODOM_RESOLUTION)
-#define ODOM_INTMIN (ODOM_MIN / ODOM_RESOLUTION)
+#define POSE_MAX 1000
+#define POSE_MIN -1000
 
+#define POSE_RESOLUTION 0.01
+#define POSE_INTMAX (POSE_MAX / POSE_RESOLUTION)
+#define POSE_INTMIN (POSE_MIN / POSE_RESOLUTION)
 
-int32_t Odom_Float2Int(float input){
-    if(input > ODOM_MAX) input = ODOM_MAX;
-    if(input < ODOM_MIN) input = ODOM_MIN;
+int32_t Pose_Float2Int(float input){
+    if(input > POSE_MAX) input = POSE_MAX;
+    if(input < POSE_MIN) input = POSE_MIN;
 
-    return (int32_t) (input / ODOM_RESOLUTION);
+    return (int32_t) (input / POSE_RESOLUTION);
 };
 
-float Odom_Int2Float(int input){
-    if(input > ODOM_INTMAX) input = ODOM_INTMAX;
-    if(input < ODOM_INTMIN) input = ODOM_INTMIN;
+float Pose_Int2Float(int input){
+    if(input > POSE_INTMAX) input = POSE_INTMAX;
+    if(input < POSE_INTMIN) input = POSE_INTMIN;
 
-    return (float) (input * ODOM_RESOLUTION);
+    return (float) (input * POSE_RESOLUTION);
+};
+
+///////////////////////////////// ORIENTATION
+
+#define ORIENT_MAX 1
+#define ORIENT_MIN -1
+
+#define ORIENT_RESOLUTION 0.00001
+#define ORIENT_INTMAX (ORIENT_MAX / ORIENT_RESOLUTION)
+#define ORIENT_INTMIN (ORIENT_MIN / ORIENT_RESOLUTION)
+
+int32_t Orient_Float2Int(float input){
+    if(input > ORIENT_MAX) input = ORIENT_MAX;
+    if(input < ORIENT_MIN) input = ORIENT_MIN;
+
+    return (int32_t) (input / ORIENT_RESOLUTION);
+};
+
+float Orient_Int2Float(int input){
+    if(input > ORIENT_INTMAX) input = ORIENT_INTMAX;
+    if(input < ORIENT_INTMIN) input = ORIENT_INTMIN;
+
+    return (float) (input * ORIENT_RESOLUTION);
 };
 
 #endif
