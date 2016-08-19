@@ -49,7 +49,7 @@ public:
         this->sys64[0] = *(sys64+0);
         this->sys64[1] = *(sys64+1);
 
-        this->decimal = 64*Decode64(sys64[0]) + Decode64(sys64[1]) - 32;
+        this->decimal = 64*Decode64(sys64[0]) + Decode64(sys64[1]) - 2048;
     }
 };
 
@@ -72,7 +72,7 @@ public:
         this->sys64[1] = *(sys64+1);
         this->sys64[2] = *(sys64+2);
 
-        this->decimal = 4096*Decode64(sys64[0]) + 64*Decode64(sys64[1]) + Decode64(sys64[2]) - 2048;
+        this->decimal = 4096*Decode64(sys64[0]) + 64*Decode64(sys64[1]) + Decode64(sys64[2]) - 131072;
     }
 };
 
@@ -97,7 +97,7 @@ public:
         this->sys64[2] = *(sys64+2);
         this->sys64[3] = *(sys64+3);
 
-        this->decimal = 262144*Decode64(sys64[0]) + 4096*Decode64(sys64[1]) + 64*Decode64(sys64[2]) + Decode64(sys64[3]) - 131072;
+        this->decimal = 262144*Decode64(sys64[0]) + 4096*Decode64(sys64[1]) + 64*Decode64(sys64[2]) + Decode64(sys64[3]) - 8388608;
     }
 };
 
