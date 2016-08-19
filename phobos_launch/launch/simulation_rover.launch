@@ -1,5 +1,9 @@
 <launch>
 
+<!-- LOCALIZATION TESTING -->
+    <node name="gps_sim_node"         pkg="phobos_gps_sim"         type="gps_sim_node"           ns="/test"/>
+
+
 <!-- COMMUNICATION -->
     <node name="gazebo_motor_transceiver"   pkg="phobos_simulation"         type="gazebo_motor_transceiver"     ns="/rover"/>
 
@@ -11,7 +15,7 @@
     <node name="wheels_odometry_3d"         pkg="phobos_rover_localization" type="wheels_odometry_3d"           ns="/rover">
         <param name="/wheel_circumference"  value="0.6283"/>
         <param name="/wheels_spacing"       value="0.600"/>
-        <param name="/impulses_per_rotation" value="1000"/>
+        <param name="/impulses_per_rotation" value="10000"/>
     </node>
 
     <node name="ekf_localization_node"      pkg="robot_localization"        type="ekf_localization_node"       ns="/rover"  clear_params="true"     output="screen">
@@ -29,7 +33,7 @@
 
         <param name="odom0" value="/rover/localization/vo"/>
         <rosparam param="odom0_config">[ true,  true,  true,
-                                         true,  true,  true,
+                                        false, false, false,
                                          true,  true,  true,
                                          true,  true,  true,
                                         false, false, false]</rosparam>
@@ -42,7 +46,7 @@
                                         false, false, false,
                                         false, false, false,
                                         false, false, false]</rosparam>
-        <param name="odom1_differential" value="false"/>
+        <param name="odom1_differential" value="true"/>
         <param name="odom1_relative" value="false"/>
 
         <param name="imu0" value="/rover/localization/imu"/>
