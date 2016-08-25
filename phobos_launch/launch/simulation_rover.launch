@@ -46,7 +46,7 @@
                                         false, false, false,
                                         false, false, false,
                                         false, false, false]</rosparam>
-        <param name="odom1_differential" value="true"/>
+        <param name="odom1_differential" value="false"/>
         <param name="odom1_relative" value="true"/>
 
         <param name="imu0" value="/rover/localization/imu"/>
