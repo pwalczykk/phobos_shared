@@ -27,9 +27,28 @@ int Decode64(char value){
     else if(47 < value && value < 60){  // 0(0) - ;(11) (0123456789:;)
         return (int)value - 48;
     }else{
-        printf("WRONG CHAR TO CONVERT: %i\n", (int)value);
+        printf("WRONG CHAR TO CONVERT: %c\n", value);
     }
 }
+
+class Sys64Coder1{
+public:
+    int decimal;
+    char sys64[1];
+public:
+    Sys64Coder1(int decimal){
+        this->decimal = decimal;
+
+        int unsigned_decimal = decimal + 32;
+        this->sys64[0] = Encode64(unsigned_decimal);
+    }
+
+    Sys64Coder1(char* sys64){
+        this->sys64[0] = *(sys64+0);
+
+        this->decimal = Decode64(sys64[0]) - 32;
+    }
+};
 
 class Sys64Coder2{
 public:
@@ -97,6 +116,89 @@ public:
         this->sys64[3] = *(sys64+3);
 
         this->decimal = 262144*Decode64(sys64[0]) + 4096*Decode64(sys64[1]) + 64*Decode64(sys64[2]) + Decode64(sys64[3]) - 8388608;
+    }
+};
+
+int Sys64_Char2Int(char* input, int length){
+    switch(length){
+        case 1:{
+            Sys64Coder1 coder(input);
+            return coder.decimal;
+        }
+        case 2:{
+            Sys64Coder2 coder(input);
+            return coder.decimal;
+        }
+        case 3:{
+            Sys64Coder3 coder(input);
+            return coder.decimal;
+        }
+        case 4:{
+            Sys64Coder4 coder(input);
+            return coder.decimal;
+        }
+        default:
+            return 0;
+    }
+}
+
+void Sys64_Char2Int(char* input, int* output, int length){
+    switch(length){
+        case 1:{
+            Sys64Coder1 coder(input);
+            *output = coder.decimal;
+            break;
+        }
+        case 2:{
+            Sys64Coder2 coder(input);
+            *output = coder.decimal;
+            break;
+        }
+        case 3:{
+            Sys64Coder3 coder(input);
+            *output = coder.decimal;
+            break;
+        }
+        case 4:{
+            Sys64Coder4 coder(input);
+            *output = coder.decimal;
+            break;
+        }
+
+        return;
+    }
+};
+
+void Sys64_Int2Char(int input, char* output, int length){
+    switch(length){
+        case 1:{
+            Sys64Coder1 coder(input);
+            *(output+0) = coder.sys64[0];
+            break;
+        }
+        case 2:{
+            Sys64Coder2 coder(input);
+            *(output+0) = coder.sys64[0];
+            *(output+1) = coder.sys64[1];
+            break;
+        }
+        case 3:{
+            Sys64Coder3 coder(input);
+            *(output+0) = coder.sys64[0];
+            *(output+1) = coder.sys64[1];
+            *(output+2) = coder.sys64[2];
+            break;
+        }
+        case 4:{
+            Sys64Coder4 coder(input);
+            *(output+0) = coder.sys64[0];
+            *(output+1) = coder.sys64[1];
+            *(output+2) = coder.sys64[2];
+            *(output+3) = coder.sys64[3];
+            break;
+        }
+
+        return;
     }
 };
 

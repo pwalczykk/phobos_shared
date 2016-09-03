@@ -56,7 +56,7 @@ public:
         close(uart0_filestream);
     }
 
-    bool ReadBuffer(){
+    bool ReadBuffor(){
         rx_length = read(uart0_filestream, (void*)WORD.buffor, sizeof(WORD));
 
         if(rx_length == 0){
@@ -71,7 +71,7 @@ public:
         }
     }
 
-    bool ReadBufferAsString(){
+    bool ReadBufforAsString(){
         BUFFOR.clear();
         rx_length = read(uart0_filestream, (void*)BUFFOR.data(), data_num * 5 + 16);
 
@@ -103,7 +103,7 @@ public:
         }
     }
 
-    bool ReadBufferAsChar(){
+    bool ReadBufforAsChar(){
         rx_length = read(uart0_filestream, (void*)CBUFFOR, buff_size);
 
         printf("Rx BUFFOR: %s \n", CBUFFOR);
@@ -130,7 +130,7 @@ public:
     }
 
 
-    bool ReadBufferAsChar64(){
+    bool ReadBufforAsChar64(){
         rx_length = read(uart0_filestream, (void*)CBUFFOR, buff_size);
 
 
