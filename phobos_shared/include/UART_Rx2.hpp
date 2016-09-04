@@ -67,7 +67,6 @@ public:
             printf("UART RX ERROR!\n");
             return false;
         }
-
     }
 
     char DecodeMessageType(){
