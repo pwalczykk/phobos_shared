@@ -55,7 +55,7 @@ public:
 
     bool ReadBuffor(){
         rx_length = read(uart0_filestream, (void*)CBUFFOR, UART_RX_BUFF_SIZE);
-        printf("*** RX%s\n", this->CBUFFOR);
+        printf("*** RX:%s\n", this->CBUFFOR);
 
         if(rx_length == 0){
             return false;

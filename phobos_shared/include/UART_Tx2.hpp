@@ -79,6 +79,15 @@ public:
         this->data_num = data_num;
         this->data_size = data_size;
         this->buff_size = buff_size;
+
+        this->FRAME.header.type='X';
+        this->FRAME.header.ctrl=0;
+        this->FRAME.header.csum=0;
+
+        for(int i = 0; i < data_num; i++){
+            this->FRAME.data[i] = 0;
+        }
+
     }
 
     void CopyToBuffor(const char* data, int begin, int length){
