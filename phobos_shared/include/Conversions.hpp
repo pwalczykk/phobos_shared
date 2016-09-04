@@ -6,15 +6,15 @@
 #define POSE_MAX 1000
 #define POSE_MIN -1000
 
-#define POSE_RESOLUTION 0.001
+#define POSE_RESOLUTION 0.01
 #define POSE_INTMAX (POSE_MAX / POSE_RESOLUTION)
 #define POSE_INTMIN (POSE_MIN / POSE_RESOLUTION)
 
-int32_t Pose_Float2Int(float input){
+int Pose_Float2Int(float input){
     if(input > POSE_MAX) input = POSE_MAX;
     if(input < POSE_MIN) input = POSE_MIN;
 
-    return (int32_t) (input / POSE_RESOLUTION);
+    return (int) (input / POSE_RESOLUTION);
 };
 
 float Pose_Int2Float(int input){
@@ -33,11 +33,11 @@ float Pose_Int2Float(int input){
 #define ORIENT_INTMAX (ORIENT_MAX / ORIENT_RESOLUTION)
 #define ORIENT_INTMIN (ORIENT_MIN / ORIENT_RESOLUTION)
 
-int32_t Orient_Float2Int(float input){
+int Orient_Float2Int(float input){
     if(input > ORIENT_MAX) input = ORIENT_MAX;
     if(input < ORIENT_MIN) input = ORIENT_MIN;
 
-    return (int32_t) (input / ORIENT_RESOLUTION);
+    return (int) (input / ORIENT_RESOLUTION);
 };
 
 float Orient_Int2Float(int input){
