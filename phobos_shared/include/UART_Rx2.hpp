@@ -54,6 +54,10 @@ public:
     }
 
     bool ReadBuffor(){
+        for(int i = 0; i < UART_RX_BUFF_SIZE; i++){
+            *(this->CBUFFOR + i) = '*';
+        }
+
         rx_length = read(uart0_filestream, (void*)CBUFFOR, UART_RX_BUFF_SIZE);
         printf("*** RX:%s\n", this->CBUFFOR);
 
@@ -97,14 +101,24 @@ public:
         return Sys64_Char2Int((RX->CBUFFOR + begin), length);
     }
 
+    char CopyFromBuffor(int begin){
+        return *(RX->CBUFFOR + begin);
+    }
+
+    void CopyFromBuffor(char* destination, int begin, int length){
+        memcpy(destination, (RX->CBUFFOR + begin), length);
+    }
+
     bool DecodeBuffor(){
-        FRAME.header.type = DecodeFromBuffor(FRAME_TYPE_BEGIN, TYPE_LEN);
+        FRAME.header.type = CopyFromBuffor(FRAME_TYPE_BEGIN);
         FRAME.header.ctrl = DecodeFromBuffor(FRAME_CTRL_BEGIN, CTRL_LEN);
         // FRAME.header.csum = DecodeFromBuffor(FRAME_CSUM_BEGIN, CSUM_LEN); // Moved to CheckControlSum()
 
         for(int i = 0; i < this->data_num; i++){
             FRAME.data[i] = DecodeFromBuffor(FRAME_DATA_BEGIN + i*this->data_size, this->data_size);
         }
+
+        printf("//RX// type: %c  data_num: %d  data_size: %d, buff_size: %d", FRAME.header.type, data_num, data_size, buff_size);
     }
 
 

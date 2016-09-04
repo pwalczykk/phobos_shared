@@ -114,6 +114,9 @@ public:
         CopyToBuffor(&FRAME_END_CHAR, FRAME_DATA_BEGIN + this->data_size * this->data_size, END_LEN);
 
         EncodeToBuffor(this->ControlSum(), FRAME_CSUM_BEGIN, CSUM_LEN);
+
+        printf("//TX// type: %c  data_num: %d  data_size: %d, buff_size: %d", FRAME.header.type, data_num, data_size, buff_size);
+
     }
 
     int32_t ControlSum(){
