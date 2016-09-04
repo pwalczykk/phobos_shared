@@ -59,6 +59,8 @@ public:
                 printf("'UART TX error code: %d'\n", count);
             }
         }
+
+        printf("*** TX:%s\n", this->CBUFFOR);
     }
 };
 

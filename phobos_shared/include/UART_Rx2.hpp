@@ -66,6 +66,8 @@ public:
             printf("UART RX ERROR!\n");
             return false;
         }
+
+        printf("*** RX%s\n", this->CBUFFOR);
     }
 
     char DecodeMessageType(){
