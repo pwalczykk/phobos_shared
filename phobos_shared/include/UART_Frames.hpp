@@ -32,6 +32,7 @@ const char FRAME_TM_SUSP =      's';
 
 // Frame header - type, control commans and control sum
 #define HEADER_LEN (TYPE_LEN + CTRL_LEN + CSUM_LEN)
+#define HEADER_NUM 3
 struct FrameHeader{
     int32_t type;
     int32_t ctrl;
@@ -58,7 +59,7 @@ union FrameTeleoperationCtrl{
 
     };
     struct {
-        int32_t head[HEADER_LEN];
+        int32_t head[HEADER_NUM];
         int32_t data[TO_CTRL_DATA_NUM];
     };
 };
@@ -75,7 +76,7 @@ union FrameTeleoperationWheels{
 
     };
     struct {
-        int32_t head[HEADER_LEN];
+        int32_t head[HEADER_NUM];
         int32_t data[TO_WHEELS_DATA_NUM];
     };
 };
@@ -97,7 +98,7 @@ union FrameTeleoperationArm{
 
     };
     struct {
-        int32_t head[HEADER_LEN];
+        int32_t head[HEADER_NUM];
         int32_t data[TO_ARM_DATA_NUM];
     };
 };
@@ -119,7 +120,7 @@ union FrameTelemetryPose{
 
     };
     struct {
-        int32_t head[HEADER_LEN];
+        int32_t head[HEADER_NUM];
         int32_t data[TM_POSE_DATA_NUM];
     };
 };
@@ -138,7 +139,7 @@ union FrameTelemetryOrient{
 
     };
     struct {
-        int32_t head[HEADER_LEN];
+        int32_t head[HEADER_NUM];
         int32_t data[TM_ORIENT_DATA_NUM];
     };
 };
@@ -159,7 +160,7 @@ union FrameTelemetryWheels{
 
     };
     struct {
-        int32_t head[HEADER_LEN];
+        int32_t head[HEADER_NUM];
         int32_t data[TM_WHEELS_DATA_NUM];
     };
 };
@@ -180,7 +181,7 @@ union FrameTelemetryArm{
 
     };
     struct {
-        int32_t head[HEADER_LEN];
+        int32_t head[HEADER_NUM];
         int32_t data[TM_ARM_DATA_NUM];
     };
 };
@@ -199,7 +200,7 @@ union FrameTelemetrySusp{
 
     };
     struct {
-        int32_t head[HEADER_LEN];
+        int32_t head[HEADER_NUM];
         int32_t data[TM_SUSP_DATA_NUM];
     };
 };
