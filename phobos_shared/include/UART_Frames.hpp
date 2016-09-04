@@ -9,19 +9,19 @@
 
 
 // Transmission limiting chars
-const char* FRAME_BEGIN_CHAR = "<";
-const char* FRAME_END_CHAR = ">";
+const char FRAME_BEGIN_CHAR = '<';
+const char FRAME_END_CHAR = '>';
 
 // Frame types available:
-const char* FRAME_TO_CTRL =      "C";
-const char* FRAME_TO_WHEELS =    "W";
-const char* FRAME_TO_ARM =       "A";
+const char FRAME_TO_CTRL =      'C';
+const char FRAME_TO_WHEELS =    'W';
+const char FRAME_TO_ARM =       'A';
 
-const char* FRAME_TM_OREINT =    "o";
-const char* FRAME_TM_POSE =      "p";
-const char* FRAME_TM_ARM =       "a";
-const char* FRAME_TM_WHEELS =    "w";
-const char* FRAME_TM_SUSP =      "s";
+const char FRAME_TM_POSE =      'p';
+const char FRAME_TM_ORIENT =    'o';
+const char FRAME_TM_WHEELS =    'w';
+const char FRAME_TM_ARM =       'a';
+const char FRAME_TM_SUSP =      's';
 
 // Const length frame elementsw:
 #define BEGIN_LEN 1
@@ -93,7 +93,7 @@ union FrameTeleoperationArm{
         int32_t link_2;
         int32_t link_3;
         int32_t link_4;
-        int32_t grip_force;
+        int32_t grip;
 
     };
     struct {

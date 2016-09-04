@@ -89,14 +89,14 @@ public:
     }
 
     void EncodeBuffor(){
-        CopyToBuffor(FRAME_BEGIN_CHAR, 0, BEGIN_LEN);
+        CopyToBuffor(&FRAME_BEGIN_CHAR, 0, BEGIN_LEN);
         EncodeToBuffor(FRAME.header.type, FRAME_TYPE_BEGIN, TYPE_LEN);
         EncodeToBuffor(FRAME.header.ctrl, FRAME_CTRL_BEGIN, CTRL_LEN);
 
         for(int i = 0; i < this->data_num; i++){
             EncodeToBuffor(FRAME.data[i], FRAME_DATA_BEGIN + i*this->data_size, this->data_size);
         }
-        CopyToBuffor(FRAME_END_CHAR, 0, END_LEN);
+        CopyToBuffor(&FRAME_END_CHAR, 0, END_LEN);
 
         EncodeToBuffor(this->ControlSum(), FRAME_CSUM_BEGIN, CSUM_LEN);
 

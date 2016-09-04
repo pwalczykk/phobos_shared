@@ -69,7 +69,7 @@ public:
     }
 
     char DecodeMessageType(){
-        if(*(CBUFFOR+0) != *FRAME_BEGIN_CHAR) return 0;      // "<" - begin transmission
+        if(*(CBUFFOR+0) != FRAME_BEGIN_CHAR) return 0;      // "<" - begin transmission
         return *(CBUFFOR+1);
     }
 

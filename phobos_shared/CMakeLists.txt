@@ -16,6 +16,8 @@ add_message_files(
   EncodersArm.msg
   EncodersRockerBogie.msg
   EncodersWheels.msg
+  TeleopWheels.msg
+  TeleopArm.msg
 )
 
 generate_messages(
