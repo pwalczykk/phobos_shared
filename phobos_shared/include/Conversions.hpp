@@ -1,6 +1,7 @@
 #ifndef MY_CONVERSIONS_HPP_
 #define MY_CONVERSIONS_HPP_
 
+
 ///////////////////////////////// POSITION
 
 #define POSE_MAX 1000
@@ -23,6 +24,7 @@ float Pose_Int2Float(int input){
 
     return (float) (input * POSE_RESOLUTION);
 };
+
 
 ///////////////////////////////// ORIENTATION
 
