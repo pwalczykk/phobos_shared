@@ -41,7 +41,7 @@ struct FrameHeader{
 // Positions of fields in transmission buffor
 #define FRAME_TYPE_BEGIN (BEGIN_LEN)
 #define FRAME_CTRL_BEGIN (BEGIN_LEN + TYPE_LEN)
-#define FRAME_CSUM_BEGIN (BEGIN_LEN + TYPE_LEN + CSUM_LEN)
+#define FRAME_CSUM_BEGIN (BEGIN_LEN + TYPE_LEN + CTRL_LEN)
 #define FRAME_DATA_BEGIN (BEGIN_LEN + HEADER_LEN)
 #define EMPTY_FRAME_LEN (BEGIN_LEN + HEADER_LEN + END_LEN)
 

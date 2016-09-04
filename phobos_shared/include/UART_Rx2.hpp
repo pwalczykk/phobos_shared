@@ -117,7 +117,7 @@ public:
             control_sum += *(RX->CBUFFOR + i);
         }
 
-        for(int i = FRAME_DATA_BEGIN; i < this->buff_size; i++){
+        for(int i = FRAME_DATA_BEGIN; i < this->buff_size - END_LEN; i++){
             control_sum += *(RX->CBUFFOR + i);
         }
 
