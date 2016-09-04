@@ -111,11 +111,11 @@ public:
         for(int i = 0; i < this->data_num; i++){
             EncodeToBuffor(FRAME.data[i], FRAME_DATA_BEGIN + i*this->data_size, this->data_size);
         }
-        CopyToBuffor(&FRAME_END_CHAR, FRAME_DATA_BEGIN + this->data_size * this->data_size, END_LEN);
+        CopyToBuffor(&FRAME_END_CHAR, FRAME_DATA_BEGIN + this->data_num * this->data_size, END_LEN);
 
         EncodeToBuffor(this->ControlSum(), FRAME_CSUM_BEGIN, CSUM_LEN);
 
-        printf("//TX// type: %c  data_num: %d  data_size: %d, buff_size: %d", FRAME.header.type, data_num, data_size, buff_size);
+        printf("//TX// type: %c  data_num: %d  data_size: %d, buff_size: %d\n", FRAME.header.type, data_num, data_size, buff_size);
 
     }
 

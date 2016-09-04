@@ -115,10 +115,11 @@ public:
         // FRAME.header.csum = DecodeFromBuffor(FRAME_CSUM_BEGIN, CSUM_LEN); // Moved to CheckControlSum()
 
         for(int i = 0; i < this->data_num; i++){
+            printf("decoding: %d\n", i);
             FRAME.data[i] = DecodeFromBuffor(FRAME_DATA_BEGIN + i*this->data_size, this->data_size);
         }
 
-        printf("//RX// type: %c  data_num: %d  data_size: %d, buff_size: %d", FRAME.header.type, data_num, data_size, buff_size);
+        printf("//RX// type: %c  data_num: %d  data_size: %d, buff_size: %d\n", FRAME.header.type, data_num, data_size, buff_size);
     }
 
 
