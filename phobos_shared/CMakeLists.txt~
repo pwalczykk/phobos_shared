@@ -19,7 +19,7 @@ add_message_files(
   TeleopWheels.msg
   TeleopArm.msg
   TeleopWheelsFloat.msg
-  TeleopArmFloat.msg
+  TeleopArm.msg
 )
 
 generate_messages(
