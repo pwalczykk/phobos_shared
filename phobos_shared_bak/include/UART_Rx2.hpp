@@ -65,15 +65,6 @@ public:
             return false;
         }
         else if(rx_length > 0){
-
-            for(int i = 0; i < 5; i++){
-                if(*(CBUFFOR+0) != FRAME_BEGIN_CHAR){
-                    memmove((void*)CBUFFOR, (void*)(CBUFFOR+1), UART_RX_BUFF_SIZE-1);
-                    printf("*** RX:%s\n ; memoved",this->CBUFFOR);
-                    break;
-                }
-            }
-
             return true;
         }
         else{
