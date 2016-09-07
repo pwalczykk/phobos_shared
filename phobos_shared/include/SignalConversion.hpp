@@ -91,7 +91,7 @@ namespace conv{
     SignalConversion <float, int> link4_sig(-3.14, 3,14, -314, 314,2);
     SignalConversion <float, int>  grip_sig(-0.00, 1.00, 0, 100,2);
 
-    SignalConversion <float, int> wheel_sig(-1.00, 1.00, -100, 100,2);
+    SignalConversion <float, int> wheel_sig(-1.00, 1.00, -256, 256,2);
 
     SignalConversion <float, int> rocker_sig(0,1,1,1,2);
     SignalConversion <float, int> bogie_sig(0,1,1,1,2);
