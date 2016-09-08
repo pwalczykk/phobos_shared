@@ -72,6 +72,8 @@ namespace conv{
 
     float wheel_gearbox = 1;  float wheel_motor = 46.70; float wheel_encoder = 18;  float wheel_ratio = wheel_gearbox * wheel_motor * wheel_encoder;
 
+
+
     // TODO : Uwzględnić kąty manipulatora!
     //
     // JointConfig LINK_0(-3.00, 3.00, 10000);
