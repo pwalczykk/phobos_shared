@@ -22,6 +22,7 @@ add_message_files(
   TeleopArmFloat.msg
   EncodersAllFloat.msg
   PositionOrientation.msg
+  WheelsPID.msg
 )
 
 generate_messages(

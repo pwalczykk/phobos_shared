@@ -106,7 +106,7 @@ namespace conv{
     SignalConversion <int, float> link4_enc(0,1000,0,1,2);
     SignalConversion <int, float> grip_enc(0,1000,0,1,2);
 
-    SignalConversion <int, float> wheel_enc(0,1000,0,1,2);
+    SignalConversion <int, float> wheel_enc(-1000,1000,-1,1,2);
 
     SignalConversion <int, float> rocker_enc(0,1000,0,1,2);
     SignalConversion <int, float> bogie_enc(0,1000,0,1,2);
