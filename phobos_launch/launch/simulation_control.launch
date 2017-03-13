@@ -8,15 +8,44 @@
     <!-- VISUALIZATION -->
     <node name="pub_traveled_path" pkg="phobos_control_station" type="pub_traveled_path" ns="/control"/>
 
-    <node name="robot_pose_publisher" pkg="phobos_control_station" type="robot_pose_publisher" ns="/control">
-        <param name="parent_link" value="/odom"/>
-        <param name="child_link" value="/base_link"/>
-    </node>
-
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" ns="/control">
-        <remap from="/control/joint_states" to="/control/encoders/joint_state"/>
-    </node>
-
     <node name="rviz" type="rviz" pkg="rviz" ns="/control"/>
+
+    <!-- IMAGE VIEW -->
+    <node name="display_image_1" pkg="phobos_rover_vision" type="display_image" ns="rover">
+        <param name="camera_name" value="camera1"/>
+        <param name="width" value="320"/>
+        <param name="height" value="240"/>
+        <param name="x" value="320"/>
+        <param name="y" value="0"/>
+        <param name="image_transport" value="compressed"/>
+    </node>
+
+    <node name="display_image_2" pkg="phobos_rover_vision" type="display_image" ns="rover">
+        <param name="camera_name" value="camera2"/>
+        <param name="width" value="320"/>
+        <param name="height" value="240"/>
+        <param name="x" value="320"/>
+        <param name="y" value="240"/>
+        <param name="image_transport" value="compressed"/>
+    </node>
+
+    <!-- <node name="display_image_3" pkg="phobos_rover_vision" type="display_image" ns="rover">
+        <param name="camera_name" value="camera3"/>
+        <param name="width" value="320"/>
+        <param name="height" value="240"/>
+        <param name="x" value="0"/>
+        <param name="y" value="0"/>
+        <param name="image_transport" value="compressed"/>
+        <remap from="/rover/camera3/image_raw" to="/rover/camera3/image"/>
+    </node> -->
+
+    <node name="display_image_4" pkg="phobos_rover_vision" type="display_image" ns="rover">
+        <param name="camera_name" value="camera4"/>
+        <param name="width" value="320"/>
+        <param name="height" value="240"/>
+        <param name="x" value="0"/>
+        <param name="y" value="240"/>
+        <param name="image_transport" value="compressed"/>
+    </node>
 
 </launch>

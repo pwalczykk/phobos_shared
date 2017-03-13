@@ -3,6 +3,16 @@
 <!-- LOCALIZATION TESTING -->
     <node name="gps_sim_node"         pkg="phobos_gps_sim"         type="gps_sim_node"           ns="/test"/>
 
+<!-- TF Publishing -->
+    <node name="robot_pose_publisher" pkg="phobos_control_station" type="robot_pose_publisher" output="screen" ns="/control">
+        <param name="parent_link" value="/odom"/>
+        <param name="child_link" value="/base_link"/>
+    </node>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" ns="/control">
+        <remap from="/control/joint_states" to="/control/encoders/joint_state"/>
+    </node>
+
 
 <!-- COMMUNICATION -->
     <node name="gazebo_motor_transceiver"   pkg="phobos_simulation"         type="gazebo_motor_transceiver"     ns="/rover"/>
@@ -34,20 +44,29 @@
         <param name="odom0" value="/rover/localization/vo"/>
         <rosparam param="odom0_config">[ true,  true,  true,
                                         false, false, false,
-                                         true,  true,  true,
-                                         true,  true,  true,
+                                        false, false, false,
+                                        false, false, false,
                                         false, false, false]</rosparam>
         <param name="odom0_differential" value="true"/>
-        <param name="odom0_relative" value="true"/>
+        <param name="odom0_relative" value="false"/>
+
+        <!-- <param name="odom1" value="/rover/localization/vo"/>
+        <rosparam param="odom1_config">[false, false, false,
+                                        false, false, false,
+                                        true,  true,  true,
+                                        true,  true,  true,
+                                        false, false, false]</rosparam>
+        <param name="odom1_differential" value="true"/>
+        <param name="odom1_relative" value="false"/> -->
 
         <param name="odom1" value="/rover/localization/wo"/>
-        <rosparam param="odom1_config">[ true,  true,  true,
+        <rosparam param="odom1_config">[true,  true,  true,
                                         false, false, false,
                                         false, false, false,
                                         false, false, false,
                                         false, false, false]</rosparam>
         <param name="odom1_differential" value="false"/>
-        <param name="odom1_relative" value="true"/>
+        <param name="odom1_relative" value="false"/>
 
         <param name="imu0" value="/rover/localization/imu"/>
         <rosparam param="imu0_config">[ false, false, false,
@@ -67,7 +86,7 @@
 
     <node name="web_video_server"       pkg="web_video_server"      type="web_video_server" ns="/rover" output="screen"/>
 
-    <node name="camera1_tf_broadcaster" pkg="phobos_rover_vision" type="tf_broadcaster" ns="/rover">
+    <!-- <node name="camera1_tf_broadcaster" pkg="phobos_rover_vision" type="tf_broadcaster" ns="/rover">
         <param name="parent_link" value="base_link"/>
         <param name="child_link" value="camera1_lens"/>
         <param name="pose_x" value =" 0.265"/>
@@ -77,11 +96,11 @@
         <param name="orient_y" value =" 0.5"/>
         <param name="orient_z" value ="-0.5"/>
         <param name="orient_w" value =" 0.5"/>
-    </node>
+    </node> -->
 
     <node name="stereo_image_proc" pkg="stereo_image_proc" type="stereo_image_proc" output="screen" ns="/rover">
-        <param name="~approximate_sync" value="True"/>
-        <param name="~queue_size" value="10"/>
+        <param name="approximate_sync" value="True"/>
+        <param name="queue_size" value="10"/>
 
         <remap from="/rover/left/image_raw"     to="/rover/camera1/image_raw" />
         <remap from="/rover/left/camera_info"   to="/rover/camera1/camera_info" />
@@ -102,8 +121,11 @@
         <remap from="/rover/visual_odometry/point_cloud"    to="/rover/localization/vo/point_cloud"/>
         <remap from="/rover/visual_odometry/info"           to="/rover/localization/vo/info"/>
 
+        <param name="approximate_sync" value="True"/>
+        <param name="queue_size" value="10"/>
+
         <param name="base_link_frame_id" value="base_link"/>
-        <!-- <param name="sensor_frame_id" value="camera1_lens"/> -->
+        <param name="sensor_frame_id" value="camera1_lens"/>
         <param name="odom_frame_id" value="odom"/>
 
         <param name="publish_tf" value="false"/>

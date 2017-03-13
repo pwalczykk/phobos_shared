@@ -86,12 +86,12 @@ namespace conv{
     // JointConfig ROCKER(-0.50, 0.50, 10000);
     // JointConfig BOGIE( -0.50, 0.50, 10000);
 
-    SignalConversion <float, int> link0_sig(-3.14, 3.14, -314, 314,2);
-    SignalConversion <float, int> link1_sig(-1.25, 1.60, -125, 160,2);
-    SignalConversion <float, int> link2_sig( 0.00, 3.65, 0, 365,2);
-    SignalConversion <float, int> link3_sig(-2.30, 1.10, 230, 110,2);
-    SignalConversion <float, int> link4_sig(-3.14, 3,14, -314, 314,2);
-    SignalConversion <float, int>  grip_sig(-0.00, 1.00, 0, 100,2);
+    SignalConversion <int, int> link0_sig(-1000, 1000, -1000, 1000, 2);
+    SignalConversion <int, int> link1_sig(-1000, 1000, -1000, 1000, 2);
+    SignalConversion <int, int> link2_sig(-1000, 1000, -1000, 1000, 2);
+    SignalConversion <int, int> link3_sig(-1000, 1000, -1000, 1000, 2);
+    SignalConversion <int, int> link4_sig(-1000, 1000, -1000, 1000, 2);
+    SignalConversion <int, int>  grip_sig(-1000, 1000, -1000, 1000, 2);
 
     SignalConversion <float, int> wheel_sig(-1.00, 1.00, -256, 256,2);
 
